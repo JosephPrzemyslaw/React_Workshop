@@ -3,14 +3,14 @@ import { createRoot } from "react-dom/client";
 
 const MINIMUM_DIGIT_CHAR_CODE_ASCII = 48;
 const MAXIMUM_DIGIT_CHAR_CODE_ASCII = 57;
-const WARNING_MSG_DURATION = 2000;
+const WARNING_MSG_DURATION = 20000;
 class App extends React.Component {
     state = {
         isError: false,
     }
     render() {
         return (<>
-            <input onKeyPress={event => {
+            <input id="mainInput" onKeyPress={event => {
                 if (event.charCode < MINIMUM_DIGIT_CHAR_CODE_ASCII || event.charCode > MAXIMUM_DIGIT_CHAR_CODE_ASCII) {
                     if (!this.state.isError) {
                         this.setState({
@@ -23,7 +23,8 @@ class App extends React.Component {
                     event.preventDefault();
                 } 
             }}></input>
-            {this.state.isError && <div id="warning">Only digits allowed !</div>}
+            
+            {this.state.isError && <label htmlFor="mainInput">Only digits allowed !</label>}
         </>)
     }
 };
