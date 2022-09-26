@@ -11,7 +11,9 @@ class App extends React.Component {
     render() {
         return (<>
             <input id="mainInput" onKeyPress={event => {
-                if (event.charCode < MINIMUM_DIGIT_CHAR_CODE_ASCII || event.charCode > MAXIMUM_DIGIT_CHAR_CODE_ASCII) {
+                const key = event.key;
+                const asciiValue = key.charCodeAt(0);
+                if (asciiValue < MINIMUM_DIGIT_CHAR_CODE_ASCII || asciiValue > MAXIMUM_DIGIT_CHAR_CODE_ASCII) {
                     if (!this.state.isError) {
                         this.setState({
                             isError: true,
